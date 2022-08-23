@@ -3,6 +3,7 @@ import Deck from "./deck.js"
 const totalPoints = document.querySelector(".point-total")
 const pointMultiplier = document.querySelector(".point-multiplier")
 const board = document.querySelector(".board")
+const combo = document.querySelector(".combo")
 
 let points = 0;
 let multiplier = 1.0;
@@ -24,6 +25,7 @@ function startGame() {
 
   totalPoints.innerText = "Points: " + points
   pointMultiplier.innerText = "Multiplier: " + multiplier
+  combo.innerText = "Match a pair to start a combo!"
 
   const cards = document.querySelectorAll(".flip-card")
   cards.forEach(card => card.addEventListener('click', flipCard));
@@ -94,6 +96,7 @@ function addPoints() {
   } else {
     suit = firstCardValue[1]
     multiplier = 1;
+    combo.innerText = "Current suit: " + suit
   }
 
   if (firstCardValue[0] === 'A') {

@@ -11,23 +11,25 @@ body {
 }
   
 .board {
-  width: 1200px;
-  height: 640px;
+  width: 70%;
+  height: 90%;
   margin: auto;
   display: grid;
   /* css is not my strong suit but this got the job done */
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto;
-  padding: 10px;
 }
 
 .flip-card {
-  width: 60%;
+  width: 80%;
   margin: 5px;
   position: relative;
   box-shadow: 1px 1px 1px rgba(0,0,0,.3);
   transform: scale(1);
   transform-style: preserve-3d;
   transition: transform .5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flip-card:active {
@@ -89,4 +91,8 @@ body {
     bottom: .5rem;
     right: .5rem;
     transform: rotate(180deg);
+  }
+
+  .points-box {
+    margin: 10px;
   }
