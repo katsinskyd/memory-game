@@ -20,3 +20,8 @@ K = 13
 - Congratulations screen on winning
 - High score display
 - Make it look better overall and fix CSS issues
+
+### Credits
+I built this project using concepts from tutorials by Web Dev Simplified and Code Sketch!  
+[Web Dev Simplified's Card Game Tutorial](https://youtu.be/NxRwIZWjLtE)  
+[Code Sketch's Memory Game](https://www.youtube.com/watch?v=eMhiMsEC9Uk&list=PLLX1I3KXZ-YH-woTgiCfONMya39-Ty8qw&ab_channel=CodeSketch)
