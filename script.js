@@ -92,13 +92,20 @@ function resetBoard() {
 
 function addPoints() {
   if (suit === firstCardValue[1]) {
+    convertValue()
     multiplier += 1;
   } else {
     suit = firstCardValue[1]
     multiplier = 1;
     combo.innerText = "Current suit: " + suit
+    convertValue();
   }
+  
+  totalPoints.innerText = "Points: " + points
+  pointMultiplier.innerText = "Multiplier: " + multiplier
+} 
 
+function convertValue() {
   if (firstCardValue[0] === 'A') {
     points += 1 * multiplier
   } else if (firstCardValue[0] === 'K') {
@@ -110,9 +117,6 @@ function addPoints() {
   } else {
     points += firstCardValue[0] * multiplier
   }
-  
-  totalPoints.innerText = "Points: " + points
-  pointMultiplier.innerText = "Multiplier: " + multiplier
-} 
+}
 
 startGame()
