@@ -4,7 +4,7 @@ That's 104 cards total! (For now. 104 is a lot)
 ### Rules
 Click on cards to flip them  
 Matching a pair adds points to your total score equal to the value of the cards times the score multiplier    
-Matching the same suit in a row adds .5x to the score multiplier, so try to get a good combo!  
+Matching the same suit in a row adds a point to the score multiplier, so try to get a good combo!  
   
 Non-numbered card values:  
 A = 1    
