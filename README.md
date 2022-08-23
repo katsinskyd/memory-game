@@ -15,8 +15,8 @@ K = 13
 ### Features in Development/Ideas
 - Single deck mode (match hearts with diamonds and clubs with spades) (52 Cards)
 - Single suit mode (match numbers/letters together) (26 cards)
-- Change card colors
-- Change difficulty (lose points for a number of consecutive misses)
+- Ability to change card & background colors
+- Ability to change difficulty (lose points for a number of consecutive misses)
 - Congratulations screen on winning
 - High score display
 - Make it look better overall and fix CSS issues
