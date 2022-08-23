@@ -6,7 +6,7 @@ const board = document.querySelector(".board")
 const combo = document.querySelector(".combo")
 
 let points = 0;
-let multiplier = 1.0;
+let multiplier = 1;
 let suit = '';
 
 let hasFlippedCard = false;
@@ -92,7 +92,7 @@ function resetBoard() {
 
 function addPoints() {
   if (suit === firstCardValue[1]) {
-    multiplier += .5;
+    multiplier += 1;
   } else {
     suit = firstCardValue[1]
     multiplier = 1;
