@@ -32,6 +32,10 @@ body {
   justify-content: center;
 }
 
+.flip-card:hover {
+  cursor: pointer;
+}
+
 .flip-card:active {
   transform: scale(0.97);
   transition: transform .2s;
@@ -39,6 +43,7 @@ body {
 
 .flip-card.flip {
   transform: rotateY(180deg);
+  cursor:default;
 }
 
 .flip-card-front, .flip-card-back {
@@ -166,5 +171,9 @@ body {
 
   .selection:hover {
     box-shadow: 5px 5px 5px lightgrey;
-    
+    cursor: pointer;
+  }
+
+  #rules:hover {
+    cursor: pointer;
   }
