@@ -6,30 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards</title>
     <script src="script.js" type="module"></script>
+    <script src="modals.js" type="module"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="title">How to Play</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <div class="modal-body">
+        Click on cards to flip them<br/>
+        Matching a pair adds points to your total score<br/>
+        Points = Card value * multiplier<br/>
+        Matching the same suit in a row adds a point to the score multiplier<br/>
+        Try to get a good combo!<br/>
+        <br>
+        Non-numbered card values:<br/>
+        A = 1<br/>
+        J = 11<br/>
+        Q = 12<br/>
+        K = 13<br/>
+        <br>
+      </div>
+    </div>
+    <div id="overlay"></div>
+
     <div class="points-box">
-        <div>
-            <h3>How To Play</h3>
-            <ul>
-                <li>Click on cards to flip them</li>
-                <li>Matching a pair adds points to your total score</li>
-                <li>Points = Card value * multiplier</li>
-                <li>Matching the same suit in a row adds a point to the score multiplier</li>
-                <li>Try to get a good combo!</li>
-                <br>
-                <li>Non-numbered card values:</li>
-                <li>A = 1</li>
-                <li>J = 11</li>
-                <li>Q = 12</li>
-                <li>K = 13</li>
-                <br>
-            </ul>
-        </div>
         <div class="point-total"></div>
         <div class="point-multiplier"></div>
-        <div class="combo"></div>
+        <div class="combo"></div><br/>
+        <button data-modal-target="#modal">How to Play</button>
     </div>
 
     <div class="board"></div>
