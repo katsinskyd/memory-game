@@ -19,6 +19,7 @@ K = 13
 - Congratulations screen on winning
 - High score display
 - Make it look better overall and fix CSS issues
+- Neat animations
 
 ### Credits
 I built this project using concepts from tutorials by Web Dev Simplified and Code Sketch!  
