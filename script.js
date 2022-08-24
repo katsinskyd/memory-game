@@ -4,6 +4,7 @@ const totalPoints = document.querySelector(".point-total")
 const pointMultiplier = document.querySelector(".point-multiplier")
 const board = document.querySelector(".board")
 const combo = document.querySelector(".combo")
+const rules = document.getElementById("rules")
 
 let points = 0;
 let multiplier = 1;
@@ -11,16 +12,29 @@ let suit = '';
 
 let hasFlippedCard = false;
 let lockBoard = false;
-let firstCard, secondCard;
+let firstCard, secondCard
 let firstCardValue, secondCardValue;
+let firstValue, secondValue;
+let firstSuit, secondSuit;
+let color1, color2;
+
+let oneDeck;
+
+const selections = document.querySelectorAll(".selection")
+selections.forEach(selection => selection.addEventListener('click', () => {
+  let deckBool = (selection.id === 'true')
+  oneDeck = deckBool;
+  deckBool ? document.getElementById("ruleText").textContent = "color" : document.getElementById("ruleText").textContent = "suit";
+  
+  startGame();
+}));
 
 function startGame() {
-  const deck = new Deck()
-  deck.shuffle()
-
-  for (let i = 0; i < deck.cards.length; i++) {
-    let card = deck.cards[i]
-    board.appendChild(card.getHTML())
+  rules.removeAttribute("hidden")
+  createDeck(oneDeck);
+  
+  if (oneDeck) {
+    board.style.height = "60%"
   }
 
   totalPoints.innerText = "Points: " + points
@@ -29,6 +43,16 @@ function startGame() {
 
   const cards = document.querySelectorAll(".flip-card")
   cards.forEach(card => card.addEventListener('click', flipCard));
+}
+
+function createDeck(oneDeck) {
+  const deck = new Deck(oneDeck);
+  deck.shuffle()
+
+  for (let i = 0; i < deck.cards.length; i++) {
+    let card = deck.cards[i].getHTML();
+    board.appendChild(card)
+  }
 }
 
 function flipCard() {
@@ -59,9 +83,15 @@ function checkForMatch() {
   firstCardValue = firstCard.innerHTML.slice(firstCard.innerHTML.length - 13, firstCard.innerHTML.length - 9).replace('"', '').split(' ')
   secondCardValue = secondCard.innerHTML.slice(secondCard.innerHTML.length - 13, secondCard.innerHTML.length - 9).replace('"', '').split(' ')
 
-  // this seems easier than the other methods i've found to compare arrays so i'm going with this ok 
+  firstValue = firstCardValue[0]
+  secondValue = secondCardValue[0]
+  firstSuit = firstCardValue[1]
+  secondSuit = secondCardValue[1]
 
-  let isMatch = firstCardValue[0] === secondCardValue[0] && firstCardValue[1] === secondCardValue[1]
+  color1 = firstSuit === "♠" || firstSuit === "♣" ? "black" : "red"
+  color2 = secondSuit === "♦" || secondSuit === "♥" ? "red" : "black"
+
+  let isMatch = oneDeck ? (firstValue === secondValue) && (color1 === color2) : (firstValue === secondValue) && (firstSuit === secondSuit)
 
   isMatch ? disableCards() : unflipCards();
 }
@@ -91,14 +121,27 @@ function resetBoard() {
 }
 
 function addPoints() {
-  if (suit === firstCardValue[1]) {
-    convertValue()
-    multiplier += 1;
+  // there's probably a better way to write this but i'll just do this for now
+  if (oneDeck) {
+    if (suit === color1) {
+      convertValue()
+      multiplier += 1
+    } else {
+      suit = color1
+      multiplier = 1
+      combo.innerText = "Current color: " + suit
+      convertValue();
+    }
   } else {
-    suit = firstCardValue[1]
-    multiplier = 1;
-    combo.innerText = "Current suit: " + suit
-    convertValue();
+      if (suit === firstSuit) {
+      convertValue()
+      multiplier += 1;
+    } else {
+      suit = firstSuit
+      multiplier = 1;
+      combo.innerText = "Current suit: " + suit
+      convertValue();
+    }
   }
   
   totalPoints.innerText = "Points: " + points
@@ -106,17 +149,15 @@ function addPoints() {
 } 
 
 function convertValue() {
-  if (firstCardValue[0] === 'A') {
+  if (firstValue === 'A') {
     points += 1 * multiplier
-  } else if (firstCardValue[0] === 'K') {
+  } else if (firstValue === 'K') {
     points += 13 * multiplier
-  } else if (firstCardValue[0] === 'Q') {
+  } else if (firstValue === 'Q') {
     points += 12 * multiplier
-  } else if (firstCardValue[0] === 'J') {
+  } else if (firstValue === 'J') {
     points += 11 * multiplier
   } else {
-    points += firstCardValue[0] * multiplier
+    points += firstValue * multiplier
   }
 }
-
-startGame()

@@ -1,18 +1,5 @@
-const SUITS = ["♠", "♦", "♣", "♥"]
+const SUITS = ["♠", "♦", "♣", "♥", "♠", "♦", "♣", "♥"]
 const VALUES = [
-    "A",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K",
     "A",
     "2",
     "3",
@@ -29,8 +16,18 @@ const VALUES = [
 ]
 
 export default class Deck {
-    constructor(cards = freshDeck()) {
-        this.cards = cards
+    constructor(oneDeck) {
+        this.cards = freshDeck(oneDeck);
+
+        if (oneDeck) {
+            let singleDeck = this.cards.filter((value, index) => {
+              const _value = JSON.stringify(value);
+              return index === this.cards.findIndex(obj => {
+                return JSON.stringify(obj) === _value;
+              });
+            });
+            this.cards = singleDeck;
+          }
     }
 
     get numberOfCards() {
@@ -48,18 +45,19 @@ export default class Deck {
 }
 
 class Card {
-    constructor(suit, value) {
+    constructor(suit, value, oneDeck) {
         this.suit = suit
         this.value = value
+        this.oneDeck = oneDeck
     }
 
     get color() {
         if (this.suit === "♠") {
             return 'black'
         } else if (this.suit === "♣") {
-            return 'green'
+            return this.oneDeck ? 'black' : 'green'
         } else if (this.suit === "♦") {
-            return 'blue'
+            return this.oneDeck ? 'red' : 'blue'
         } else {
             return 'red'
         }
@@ -77,10 +75,10 @@ class Card {
     }
 }
 
-function freshDeck() {
+function freshDeck(oneDeck) {
     return SUITS.flatMap(suit => {
         return VALUES.map(value => {
-            return new Card(suit, value)
+            return new Card(suit, value, oneDeck)
         })
     })
 }

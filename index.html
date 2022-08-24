@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="modal active" id="start">
+      <div class="modal-header">
+        <div class="title">Which Mode Would You Like To Play?</div>
+      </div>
+      <div class="modal-body" style="height: 85px">
+        <button data-close-button class="selection" id="true" style="float:left">One Deck<br/>Match the same card values and colors</button>
+        <button data-close-button class="selection" id="false" style="float:right">Two Decks<br/>Match the same card values and suits</button>
+      </div>
+    </div>
+
 
     <div class="modal" id="modal">
       <div class="modal-header">
@@ -20,7 +30,7 @@
         Click on cards to flip them<br/>
         Matching a pair adds points to your total score<br/>
         Points = Card value * multiplier<br/>
-        Matching the same suit in a row adds a point to the score multiplier<br/>
+        Matching the same <span id="ruleText"></span> in a row adds a point to the score multiplier<br/>
         Try to get a good combo!<br/>
         <br>
         Non-numbered card values:<br/>
@@ -37,7 +47,7 @@
         <div class="point-total"></div>
         <div class="point-multiplier"></div>
         <div class="combo"></div><br/>
-        <button data-modal-target="#modal">How to Play</button>
+        <button data-modal-target="#modal" id="rules" hidden>How to Play</button>
     </div>
 
     <div class="board"></div>

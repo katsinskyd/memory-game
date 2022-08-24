@@ -133,7 +133,8 @@ body {
   }
 
   .modal-body {
-    padding: 10px 15px;
+    margin: 10px;
+    padding: 10px;
   }
 
   #overlay {
@@ -152,4 +153,18 @@ body {
     opacity: .5;
     pointer-events: all;
     z-index: 9;
+  }
+
+  .selection {
+    width: 40%;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    background-color: lightblue;
+    transition: .5s;
+  }
+
+  .selection:hover {
+    box-shadow: 5px 5px 5px lightgrey;
+    
   }
