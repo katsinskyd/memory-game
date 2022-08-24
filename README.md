@@ -13,7 +13,7 @@ Q = 12
 K = 13  
 
 ### Features in Development/Ideas
-- Single deck mode (match hearts with diamonds and clubs with spades) (52 Cards)
+- ~~Single deck mode (match hearts with diamonds and clubs with spades) (52 Cards)~~ ✓  
 - Ability to change card & background colors
 - Ability to change difficulty (lose points for a number of consecutive misses)
 - Congratulations screen on winning
