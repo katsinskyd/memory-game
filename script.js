@@ -5,6 +5,11 @@ const pointMultiplier = document.querySelector(".point-multiplier")
 const board = document.querySelector(".board")
 const combo = document.querySelector(".combo")
 const rules = document.getElementById("rules")
+const pageBackground = document.getElementById("pageBackground")
+
+pageBackground.addEventListener("input", () => {
+  document.body.style.backgroundColor = pageBackground.value;
+})
 
 let points = 0;
 let multiplier = 1;
