@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <div class="modal active" id="start">
       <div class="modal-header">
         <div class="title">Which Mode Would You Like To Play?</div>
@@ -20,8 +21,7 @@
       </div>
     </div>
 
-
-    <div class="modal" id="modal">
+    <div class="modal" id="rules">
       <div class="modal-header">
         <div class="title">How to Play</div>
         <button data-close-button class="close-button">&times;</button>
@@ -43,11 +43,12 @@
     </div>
     <div id="overlay"></div>
 
-    <div class="points-box">
-        <div class="point-total"></div>
-        <div class="point-multiplier"></div>
-        <div class="combo"></div><br/>
-        <button data-modal-target="#modal" id="rules" hidden>How to Play</button><br/>
+    <div class="points-box" hidden>
+      <button data-modal-target="#start" id="newGame">New Game</button>
+      <button data-modal-target="#rules" id="rules">How to Play</button><br/><br/>
+        <div class="point-total">Points: 0</div>
+        <div class="point-multiplier">Multiplier: 1</div>
+        <div class="combo">Match a pair to start a combo!</div><br/>
     </div>
 
     <div class="board"></div>

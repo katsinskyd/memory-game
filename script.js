@@ -3,8 +3,8 @@ import Deck from "./deck.js"
 const totalPoints = document.querySelector(".point-total")
 const pointMultiplier = document.querySelector(".point-multiplier")
 const board = document.querySelector(".board")
+const pointsBox = document.querySelector(".points-box")
 const combo = document.querySelector(".combo")
-const rules = document.getElementById("rules")
 const pageBackground = document.getElementById("pageBackground")
 
 pageBackground.addEventListener("input", () => {
@@ -17,7 +17,7 @@ let suit = '';
 
 let hasFlippedCard = false;
 let lockBoard = false;
-let firstCard, secondCard
+let firstCard, secondCard;
 let firstCardValue, secondCardValue;
 let firstValue, secondValue;
 let firstSuit, secondSuit;
@@ -27,7 +27,7 @@ let oneDeck;
 
 const selections = document.querySelectorAll(".selection")
 selections.forEach(selection => selection.addEventListener('click', () => {
-  let deckBool = (selection.id === 'true')
+  let deckBool = (selection.id === 'true');
   oneDeck = deckBool;
   deckBool ? document.getElementById("ruleText").textContent = "color" : document.getElementById("ruleText").textContent = "suit";
   
@@ -35,19 +35,23 @@ selections.forEach(selection => selection.addEventListener('click', () => {
 }));
 
 function startGame() {
-  rules.removeAttribute("hidden")
-  createDeck(oneDeck);
-  
-  if (oneDeck) {
-    board.style.height = "60%"
+  while (board.firstChild) {
+    board.removeChild(board.firstChild);
   }
 
+  pointsBox.removeAttribute("hidden");
+  createDeck(oneDeck);
+  
+  oneDeck ? board.style.height = "60%" : board.style.height = "90%"
+
+  const cards = document.querySelectorAll(".flip-card");
+  cards.forEach(card => card.addEventListener('click', flipCard));
+
+  points = 0;
+  multiplier = 1;
   totalPoints.innerText = "Points: " + points
   pointMultiplier.innerText = "Multiplier: " + multiplier
-  combo.innerText = "Match a pair to start a combo!"
-
-  const cards = document.querySelectorAll(".flip-card")
-  cards.forEach(card => card.addEventListener('click', flipCard));
+  combo.innerText = "Match a pair to start a combo!";
 }
 
 function createDeck(oneDeck) {
@@ -126,29 +130,21 @@ function resetBoard() {
 }
 
 function addPoints() {
-  // there's probably a better way to write this but i'll just do this for now
-  if (oneDeck) {
-    if (suit === color1) {
-      convertValue()
-      multiplier += 1
+  if (suit === color1 || suit === firstSuit) {
+    convertValue()
+    multiplier += 1
     } else {
-      suit = color1
       multiplier = 1
-      combo.innerText = "Current color: " + suit
+        if (oneDeck) {
+          suit = color1
+          combo.innerText = "Current color: " + suit
+        } else {
+          suit = firstSuit
+          combo.innerText = "Current suit: " + suit
+        }
       convertValue();
-    }
-  } else {
-      if (suit === firstSuit) {
-      convertValue()
-      multiplier += 1;
-    } else {
-      suit = firstSuit
-      multiplier = 1;
-      combo.innerText = "Current suit: " + suit
-      convertValue();
-    }
   }
-  
+
   totalPoints.innerText = "Points: " + points
   pointMultiplier.innerText = "Multiplier: " + multiplier
 } 
