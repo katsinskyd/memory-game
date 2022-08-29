@@ -13,9 +13,10 @@ K = 13
 
 ### Features in Development/Ideas
 - ~~Single deck mode (match hearts with diamonds and clubs with spades) (52 Cards)~~ ✓  
-- Ability to change card & background colors
+- ~~Ability to change background colors~~ ✓
+- Ability to change card colors  
 - Ability to change difficulty (lose points for a number of consecutive misses)
-- Congratulations screen on winning
+- ~~Congratulations screen on winning~~ ✓
 - High score display
 - Make it look better overall and fix CSS issues
 - Neat animations, indication of how many points were gained as a short pop-up above matched pairs
