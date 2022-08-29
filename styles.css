@@ -162,6 +162,7 @@ body {
   }
 
   .selection {
+    margin-bottom: 20px;
     width: 40%;
     border-radius: 10px;
     border: none;

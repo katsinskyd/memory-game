@@ -11,11 +11,27 @@
 </head>
 <body>
 
-    <div class="modal active" id="start">
+    <!-- <div class ="modal" id="end">
       <div class="modal-header">
-        <div class="title">Which Mode Would You Like To Play?</div>
+        <div class="title">Congratulations!</div>
       </div>
-      <div class="modal-body" style="height: 85px">
+      <div class="modal-body">
+        Final score: <span id='finalScore'></span><br/>
+        Would you like to play again?<br/><br/>
+        <button data-close-button class="selection" id="true" style="float:left">One Deck<br/>Match the same card values and colors</button>
+        <button data-close-button class="selection" id="false" style="float:right">Two Decks<br/>Match the same card values and suits</button>
+      </div>
+    </div> -->
+
+    <div class="modal active" id="selectionModal">
+      <div class="modal-header">
+        <div id="modalTitle">Which Mode Would You Like To Play?</div>
+      </div>
+      <div class="modal-body">
+        <div id="endResult" hidden>
+          Final score: <span id='finalScore'></span><br/>
+          Would you like to play again?<br/><br/>
+        </div>
         <button data-close-button class="selection" id="true" style="float:left">One Deck<br/>Match the same card values and colors</button>
         <button data-close-button class="selection" id="false" style="float:right">Two Decks<br/>Match the same card values and suits</button>
       </div>
@@ -23,7 +39,7 @@
 
     <div class="modal" id="rules">
       <div class="modal-header">
-        <div class="title">How to Play</div>
+        <div>How to Play</div>
         <button data-close-button class="close-button">&times;</button>
       </div>
       <div class="modal-body">
@@ -44,7 +60,7 @@
     <div id="overlay"></div>
 
     <div class="points-box" hidden>
-      <button data-modal-target="#start" id="newGame">New Game</button>
+      <button data-modal-target="#selectionModal" id="newGame">New Game</button>
       <button data-modal-target="#rules" id="rules">How to Play</button><br/><br/>
         <div class="point-total">Points: 0</div>
         <div class="point-multiplier">Multiplier: 1</div>

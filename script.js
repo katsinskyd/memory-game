@@ -1,4 +1,5 @@
 import Deck from "./deck.js"
+import openModal from "./modals.js"
 
 const totalPoints = document.querySelector(".point-total")
 const pointMultiplier = document.querySelector(".point-multiplier")
@@ -6,6 +7,8 @@ const board = document.querySelector(".board")
 const pointsBox = document.querySelector(".points-box")
 const combo = document.querySelector(".combo")
 const pageBackground = document.getElementById("pageBackground")
+const title = document.getElementById("modalTitle")
+const endResult = document.getElementById("endResult")
 
 pageBackground.addEventListener("input", () => {
   document.body.style.backgroundColor = pageBackground.value;
@@ -24,6 +27,7 @@ let firstSuit, secondSuit;
 let color1, color2;
 
 let oneDeck;
+let numMatches;
 
 const selections = document.querySelectorAll(".selection")
 selections.forEach(selection => selection.addEventListener('click', () => {
@@ -43,6 +47,7 @@ function startGame() {
   createDeck(oneDeck);
   
   oneDeck ? board.style.height = "60%" : board.style.height = "90%"
+  oneDeck ?  numMatches = 26 : numMatches = 52
 
   const cards = document.querySelectorAll(".flip-card");
   cards.forEach(card => card.addEventListener('click', flipCard));
@@ -52,6 +57,9 @@ function startGame() {
   totalPoints.innerText = "Points: " + points
   pointMultiplier.innerText = "Multiplier: " + multiplier
   combo.innerText = "Match a pair to start a combo!";
+
+  title.innerHTML = "Which Mode Would You Like To Play?"
+  endResult.setAttribute("hidden", '')
 }
 
 function createDeck(oneDeck) {
@@ -147,6 +155,17 @@ function addPoints() {
 
   totalPoints.innerText = "Points: " + points
   pointMultiplier.innerText = "Multiplier: " + multiplier
+  numMatches--
+
+  if (numMatches == 0) {
+    const finalScore = document.getElementById('finalScore')
+    finalScore.innerText = points
+
+    title.innerHTML = "Congratulations!"
+    endResult.removeAttribute("hidden")
+    const modal = document.getElementById("selectionModal")
+    openModal(modal)
+  }
 } 
 
 function convertValue() {
