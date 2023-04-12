@@ -33,7 +33,7 @@ const selections = document.querySelectorAll(".selection")
 selections.forEach(selection => selection.addEventListener('click', () => {
   let deckBool = (selection.id === 'true');
   oneDeck = deckBool;
-  deckBool ? document.getElementById("ruleText").textContent = "color" : document.getElementById("ruleText").textContent = "suit";
+  document.getElementById("ruleText").textContent = deckBool ? "color" : "suit"
   
   startGame();
 }));
@@ -46,8 +46,8 @@ function startGame() {
   pointsBox.removeAttribute("hidden");
   createDeck(oneDeck);
   
-  oneDeck ? board.style.height = "60%" : board.style.height = "90%"
-  oneDeck ?  numMatches = 26 : numMatches = 52
+  board.style.height = oneDeck ? "60%" : "90%"
+  numMatches = oneDeck ? 26 : 52
 
   const cards = document.querySelectorAll(".flip-card");
   cards.forEach(card => card.addEventListener('click', flipCard));
